@@ -5,7 +5,8 @@
 
 This controller provides a user interface to control SEMIS. Once connected to a Local Area Network (LAN), any device connected to the same network can access a SEMIS controller using its IP address, which is accessible through network discovery and also printed via the serial comm port of the ESP32 board.
 
-![SEMIS controller](../../Resources/SS_controller_UI.png)
+<img src="../../Resources/SS_controller_UI.png" alt="SEMIS controller" width="400">
+
 
 ## Hardware dependencies
 
@@ -31,7 +32,8 @@ Constants defined in [html_helper.c](components/html_helper/html_helper.c) overr
 
 The full execusion of the program is shown below in a sequence diagram.
 
-![SEMIS controller](../../Resources/Controller_sequence_diagram.jpg)
+<img src="../../Resources/Controller_sequence_diagram.jpg" alt="Controller Sequence Diagram" width="800">
+
 
 ## Build and Flash
 
@@ -43,8 +45,8 @@ Run `idf.py -p PORT flash monitor` to build, flash and monitor the project.
 
 ## Troubleshooting
 
-For any technical queries, please open an [issue](https://github.com/espressif/esp-idf/issues) on GitHub.
+For any technical queries, please open an [ESP32 repository](https://github.com/espressif/esp-idf) on GitHub.
 
-Also, feel free to contact me: [Alejandro Guzmán]()
+Also, feel free to contact me: [Alejandro Guzmán](mailto:alejandroguzt@gmail.com)
 
 
