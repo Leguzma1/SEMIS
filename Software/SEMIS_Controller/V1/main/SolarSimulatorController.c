@@ -10,6 +10,20 @@
 #include "html_helper.h"
 #include "power_control.h"
 
+#include <max31865.h>
+
+#include <stdio.h>
+#include <freertos/FreeRTOS.h>
+#include <freertos/task.h>
+
+#define PIN_NUM_MISO 10
+#define PIN_NUM_MOSI 7
+#define PIN_NUM_CLK  6
+#define PIN_NUM_CS   17
+
+#define RREF      4300.0f
+#define RNOMINAL  1000.0f
+
 static const char *TAG = "main_controller";
 
 static httpd_handle_t server = NULL;
@@ -82,3 +96,49 @@ void app_main(void)
     // no loop() needed; handlers run in esp-idf tasks
     server = start_webserver(); // Start HTTP server
 }
+
+// #include "driver/spi_master.h"
+
+
+
+// void app_main(void)
+// {
+//     spi_bus_config_t buscfg = {
+//         .miso_io_num = PIN_NUM_MISO,
+//         .mosi_io_num = PIN_NUM_MOSI,
+//         .sclk_io_num = PIN_NUM_CLK,
+//         .quadwp_io_num = -1,
+//         .quadhd_io_num = -1,
+//         .max_transfer_sz = 0,
+//     };
+
+//     ESP_ERROR_CHECK(spi_bus_initialize(SPI2_HOST, &buscfg, SPI_DMA_CH_AUTO));
+
+//     max31865_t dev = {
+//         .rtd_nominal = RNOMINAL,
+//         .r_ref = RREF,
+//         .standard = MAX31865_ITS90,
+//     };
+
+//     ESP_ERROR_CHECK(max31865_init_desc(&dev, SPI2_HOST, MAX31865_MAX_CLOCK_SPEED_HZ, PIN_NUM_CS));
+
+//     max31865_config_t cfg = {
+//         .mode = MAX31865_MODE_SINGLE,
+//         .connection = MAX31865_3WIRE,
+//         .v_bias = true,
+//         .filter = MAX31865_FILTER_50HZ,
+//     };
+//     ESP_ERROR_CHECK(max31865_set_config(&dev, &cfg));
+
+//     while (1) {
+//         float temp = 0.0f;
+//         esp_err_t ret = max31865_measure(&dev, &temp);
+//         if (ret == ESP_OK) {
+//             printf("Temperature = %.2f C\n", temp);
+//         } else {
+//             ESP_LOGE(TAG, "MAX31865 measure failed: %s", esp_err_to_name(ret));
+//         }
+
+//         vTaskDelay(pdMS_TO_TICKS(1000));
+//     }
+// }

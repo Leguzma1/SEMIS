@@ -51,7 +51,7 @@ if __name__ == "__main__":
     
     # Time setup
     time_between_meas = 5 # in seconds
-    total_meas_time = 10 * 24 * 3600 # ten days in seconds
+    total_meas_time = 40 * 24 * 3600 # twenty days in seconds
     start_time = time.time()
     last_meas_time = start_time
 
